@@ -77,6 +77,7 @@ class Mission:
 
     @classmethod
     def from_csv(cls, file_name: str):
+        """Load mission data (reference, cave height, cave depth) from a CSV file and return a Mission instance."""
         # read CSV into a DataFrame
         df = pd.read_csv(file_name)  
 
@@ -95,6 +96,7 @@ class ClosedLoop:
         self.controller = controller
 
     def simulate(self,  mission: Mission, disturbances: np.ndarray) -> Trajectory:
+        """Run PD-controlled mission simulation and return the resulting Trajectory."""
 
         T = len(mission.reference)
         if len(disturbances) < T:
